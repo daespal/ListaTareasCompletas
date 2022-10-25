@@ -13,14 +13,26 @@ export class CompletadosPage implements OnInit {
   public task: string;
 
   constructor(private tasksService:TasksService) {
-    this.tasksModel = this.tasksService.getTasks();  //esto es para mandar llamar e inicializar el servicio con lo que creamos como instancia 
+    this.tasksModel = this.tasksService.getComplete();  //esto es para mandar llamar e inicializar el servicio con lo que creamos como instancia 
    }
 
-  ngOnInit() {
-    this.tasksService.$getObjectSource.subscribe(task=>{
-      console.log(task)
-      this.user=task;
-    }).unsubscribe();
+   public addTaskComp(){
+    this.tasksService.addTask(this.user);
+    this.tasksModel = this.tasksService.getComplete();
+    console.log(this.tasksModel);
   }
+
+  
+  public removeTaskComplete(pos:number){
+    this.tasksService.removeTask(pos);
+    this.tasksModel = this.tasksService.getComplete();
+  }
+
+  ngOnInit() {
+    this.tasksService.$getObjectSource.subscribe(tasksModel=>console.log(tasksModel)).unsubscribe();
+    this.addTaskComp();
+  }
+
+ 
 
 }
