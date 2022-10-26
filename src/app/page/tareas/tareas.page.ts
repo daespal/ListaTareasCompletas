@@ -1,3 +1,4 @@
+//import { CompletadosPage } from './../completados/completados.page';
 import { CompletadosPage } from './../../page/completados/completados.page';
 import { Component } from '@angular/core';
 import { TasksService } from './../../services/tasks.service';
@@ -31,8 +32,8 @@ export class TareasPage {
     this.tasksModel = this.tasksService.getTasks();
   }
 
-  public goReceiver(pos:number){
-    this.tasksService.sendObjectSource(this.tasksModel);
+  public goReceiver(data:string,pos:number){
+    this.tasksService.sendObjectSource(data);
     this.tasksModel = this.tasksService.getTasks();
     this.tasksService.removeTask(pos);
     this.router.navigate(['tab-inicial/completados']);

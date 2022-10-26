@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class TasksService {
-  private objectSource = new BehaviorSubject<string[]>([]);
+  private objectSource = new BehaviorSubject<string>(" ");
   $getObjectSource = this.objectSource.asObservable();
   private tasks: string[] = []; //encapsulandolo porque es privado
   private complete: string[]=[];
@@ -16,7 +16,7 @@ export class TasksService {
     this.tasks.push("Tarea 2");
     this.tasks.push("Tarea 3");
     this.tasks.push("Tarea 4");
-    this.complete.push("Tarea 5");
+    
   }
 
   public getTasks(): string[] {
@@ -35,15 +35,15 @@ export class TasksService {
     return this.complete;   //esto es para regresar el taks que declaramos al principio 
   }
 
-  public addTaskComplete(task:string){
-    this.complete.push(task);
+  public addTaskComplete(comp:string){
+    this.complete.push(comp);
   }
 
   public removeTaskComplete(pos:number){
     this.complete.splice(pos,1);  //splice para borrar donde yo quiera. 
   }
 
-  sendObjectSource(task:string[]){
+  sendObjectSource(task:string){
     this.objectSource.next(task);
   }
 }
